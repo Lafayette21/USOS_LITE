@@ -38,4 +38,9 @@ public class StudentController {
     public ResponseEntity<Student> updateStudentById(@PathVariable Long id, @RequestBody Student updatedStudent) {
         return ResponseEntity.ok(studentService.updateStudentById(id,updatedStudent));
     }
+
+    @PutMapping("/{studentId}/set-field/{fieldId}")
+    public ResponseEntity<Student> updateStudentsFieldById(@PathVariable Long studentId, @PathVariable Long fieldId){
+        return ResponseEntity.ok(studentService.updateStudentsFieldById(studentId, fieldId));
+    }
 }

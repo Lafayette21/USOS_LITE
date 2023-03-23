@@ -1,6 +1,7 @@
 package com.murbanowicz.usoslite.service;
 
 import com.murbanowicz.usoslite.exception.StudentNotFoundException;
+import com.murbanowicz.usoslite.model.Field;
 import com.murbanowicz.usoslite.model.Student;
 import com.murbanowicz.usoslite.repository.StudentRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,14 +19,16 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class StudentServiceTest {
+class StudentServiceTest {
     @Mock
     private StudentRepository studentRepositoryMock;
+    @Mock
+    private FieldService fieldServiceMock;
     private StudentService studentService;
 
     @BeforeEach
     void setUp() {
-        studentService = new StudentService(studentRepositoryMock);
+        studentService = new StudentService(studentRepositoryMock, fieldServiceMock);
     }
 
     @Test
@@ -37,7 +40,7 @@ public class StudentServiceTest {
     }
 
     @Test
-    public void shouldGetStudentById() {
+    void shouldGetStudentById() {
         //given
         long idStudent = 1L;
         Student expectedStudent = new Student(idStudent, "Adam", "Abacki", "123456");
@@ -48,7 +51,7 @@ public class StudentServiceTest {
     }
 
     @Test
-    public void shouldThrowExceptionWhenStudentWithIdDoesNotExist() {
+    void shouldThrowExceptionWhenStudentWithIdDoesNotExist() {
         //Then
         assertThatThrownBy(() -> studentService.getStudentById(1L))
                 .isInstanceOf(StudentNotFoundException.class)
@@ -56,7 +59,7 @@ public class StudentServiceTest {
     }
 
     @Test
-    public void shouldAddNewStudent() {
+    void shouldAddNewStudent() {
         // given
         Student expectedStudent = new Student("Adam", "Abacki", "123456");
         // when
@@ -70,7 +73,7 @@ public class StudentServiceTest {
     }
 
     @Test
-    public void shouldDeleteStudentById() {
+    void shouldDeleteStudentById() {
         //given
         long idStudent = 1L;
         Student expectedStudent = new Student(idStudent, "Adam", "Abacki", "123456");
@@ -82,7 +85,7 @@ public class StudentServiceTest {
     }
 
     @Test
-    public void shouldUpdateStudentById() {
+    void shouldUpdateStudentById() {
         //given
         long idStudent = 1L;
         Student studentToUpdate = new Student("Adam", "Abacki", "123456");
@@ -92,5 +95,20 @@ public class StudentServiceTest {
         Student actualUpdatedStudent = studentService.updateStudentById(idStudent, expectedUpdatedStudent);
         //Then
         assertThat(actualUpdatedStudent).isEqualTo(expectedUpdatedStudent);
+    }
+
+    @Test
+    public void shouldUpdateStudentsField(){
+        // given
+        Long studentId = 1L;
+        Long fieldId = 1L;
+        Student student = new Student("Adam", "Abacki", "123456");
+        Field field = new Field("Informatyka");
+        // when
+        when(studentRepositoryMock.findById(studentId)).thenReturn(Optional.of(student));
+        when(fieldServiceMock.getFieldById(fieldId)).thenReturn(field);
+        //then
+        Student studentFromUpdate = studentService.updateStudentsFieldById(studentId, fieldId);
+        assertThat(studentFromUpdate.getField()).isEqualTo(field);
     }
 }
