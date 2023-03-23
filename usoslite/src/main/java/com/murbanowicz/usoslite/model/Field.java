@@ -8,7 +8,7 @@ public class Field {
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -21,12 +21,12 @@ public class Field {
     }
 
     public Field(Long id, String name) {
-        Id = id;
+        this.id = id;
         this.name = name;
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public String getName() {
