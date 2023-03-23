@@ -2,9 +2,9 @@ package com.murbanowicz.usoslite.controller;
 
 import com.murbanowicz.usoslite.model.Field;
 import com.murbanowicz.usoslite.service.FieldService;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,4 +24,8 @@ public class FieldController {
         return ResponseEntity.ok(service.getAllFields());
     }
 
+    @GetMapping("/get-by-id/{id}")
+    public ResponseEntity<Field> getFieldById(@PathVariable Long id){
+        return ResponseEntity.ok(service.getFieldById(id));
+    }
 }
