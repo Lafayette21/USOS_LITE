@@ -27,4 +27,16 @@ public class FieldService {
     public Field createNewField(Field field) {
         return repository.save(field);
     }
+
+    public Field deleteFieldById(Long id) {
+        Field fieldToDelete = getFieldById(id);
+        repository.delete(fieldToDelete);
+        return fieldToDelete;
+    }
+
+    public Field updateFieldById(long fieldId, Field updatedField) {
+        Field fieldToUpdate = getFieldById(fieldId);
+        fieldToUpdate.setName(updatedField.getName());
+        return fieldToUpdate;
+    }
 }

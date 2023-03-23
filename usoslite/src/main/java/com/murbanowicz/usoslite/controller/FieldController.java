@@ -31,4 +31,14 @@ public class FieldController {
     public ResponseEntity<Field> createNewField(@RequestBody Field field) {
         return new ResponseEntity<>(service.createNewField(field), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/delete-by-id/{id}")
+    public ResponseEntity<Field> deleteFieldById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.deleteFieldById(id));
+    }
+
+    @PutMapping("/update-by-id/{id}")
+    public ResponseEntity<Field> updateFieldById(@PathVariable Long id, @RequestBody Field updatedField){
+        return ResponseEntity.ok(service.updateFieldById(id, updatedField));
+    }
 }
