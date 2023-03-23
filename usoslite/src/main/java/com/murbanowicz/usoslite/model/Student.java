@@ -21,6 +21,10 @@ public class Student {
     @Column(name = "student_number")
     private String studentNumber;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "field_of_study_id", referencedColumnName = "id")
+    private Field field;
+
     public Student() {
     }
 
@@ -35,6 +39,13 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentNumber = studentNumber;
+    }
+
+    public Student(String firstName, String lastName, String studentNumber, Field field) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.studentNumber = studentNumber;
+        this.field = field;
     }
 
     public Long getIdStudent() {
@@ -63,6 +74,14 @@ public class Student {
 
     public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
+    }
+
+    public Field getField() {
+        return field;
+    }
+
+    public void setField(Field field) {
+        this.field = field;
     }
 
     @Override
