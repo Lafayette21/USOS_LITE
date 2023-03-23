@@ -1,11 +1,11 @@
 package com.murbanowicz.usoslite.service;
 
 import com.murbanowicz.usoslite.model.Field;
-import com.murbanowicz.usoslite.model.Student;
 import com.murbanowicz.usoslite.repository.FieldRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -43,5 +43,19 @@ class FieldServiceTest {
         when(fieldRepositoryMock.findById(fieldId)).thenReturn(Optional.of(expectedField));
         //then
         assertThat(fieldService.getFieldById(fieldId)).isEqualTo(expectedField);
+    }
+
+    @Test
+    void shouldAddNewStudent() {
+        // given
+        Field expectedField = new Field("Informatyka");
+        // when
+        fieldService.createNewField(expectedField);
+        // then
+        ArgumentCaptor<Field> fieldArgumentCaptor = ArgumentCaptor.forClass(Field.class);
+        verify(fieldRepositoryMock).save(fieldArgumentCaptor.capture());
+
+        Field actualField = fieldArgumentCaptor.getValue();
+        assertThat(actualField).isEqualTo(expectedField);
     }
 }

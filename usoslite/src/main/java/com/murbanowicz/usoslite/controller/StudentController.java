@@ -11,8 +11,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/student")
 public class StudentController {
-    private StudentService studentService;
+    private final StudentService studentService;
 
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @GetMapping("/get-all")
     public ResponseEntity<List<Student>> getAllStudents() {

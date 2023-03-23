@@ -2,11 +2,9 @@ package com.murbanowicz.usoslite.controller;
 
 import com.murbanowicz.usoslite.model.Field;
 import com.murbanowicz.usoslite.service.FieldService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +23,12 @@ public class FieldController {
     }
 
     @GetMapping("/get-by-id/{id}")
-    public ResponseEntity<Field> getFieldById(@PathVariable Long id){
+    public ResponseEntity<Field> getFieldById(@PathVariable Long id) {
         return ResponseEntity.ok(service.getFieldById(id));
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<Field> createNewField(@RequestBody Field field) {
+        return new ResponseEntity<>(service.createNewField(field), HttpStatus.CREATED);
     }
 }

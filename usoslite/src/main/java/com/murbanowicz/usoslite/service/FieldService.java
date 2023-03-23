@@ -23,4 +23,8 @@ public class FieldService {
         return repository.findById(id)
                 .orElseThrow(()->new FieldNotFoundException(id));
     }
+
+    public Field createNewField(Field field) {
+        return repository.save(field);
+    }
 }
