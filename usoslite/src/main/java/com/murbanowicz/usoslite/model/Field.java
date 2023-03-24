@@ -2,6 +2,7 @@ package com.murbanowicz.usoslite.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +16,9 @@ public class Field {
     @Column(name = "name")
     private String name;
 
+    @OneToMany(mappedBy = "field")
+    private List<Course> courses;
+
     public Field() {
     }
 
@@ -25,6 +29,11 @@ public class Field {
     public Field(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Field(String name, List<Course> courses) {
+        this.name = name;
+        this.courses = courses;
     }
 
     public Long getId() {
