@@ -4,6 +4,7 @@ import com.murbanowicz.usoslite.exception.FieldNotFoundException;
 import com.murbanowicz.usoslite.model.Field;
 import com.murbanowicz.usoslite.repository.FieldRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class FieldService {
         return fieldToDelete;
     }
 
+    @Transactional
     public Field updateFieldById(long fieldId, Field updatedField) {
         Field fieldToUpdate = getFieldById(fieldId);
         fieldToUpdate.setName(updatedField.getName());

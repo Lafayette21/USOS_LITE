@@ -2,6 +2,8 @@ package com.murbanowicz.usoslite.model;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "course")
 public class Course {
@@ -46,5 +48,25 @@ public class Course {
 
     public void setEctsPoints(int ectsPoints) {
         this.ectsPoints = ectsPoints;
+    }
+
+    public Field getField() {
+        return field;
+    }
+
+    public void setField(Field field) {
+        this.field = field;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Course course)) return false;
+        return ectsPoints == course.ectsPoints && courseName.equals(course.courseName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(courseName, ectsPoints);
     }
 }
