@@ -1,10 +1,14 @@
 package com.murbanowicz.usoslite.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Objects;
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "field")
 public class Field {
@@ -19,9 +23,6 @@ public class Field {
     @OneToMany(mappedBy = "field")
     private List<Course> courses;
 
-    public Field() {
-    }
-
     public Field(String name) {
         this.name = name;
     }
@@ -34,18 +35,6 @@ public class Field {
     public Field(String name, List<Course> courses) {
         this.name = name;
         this.courses = courses;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override

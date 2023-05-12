@@ -1,16 +1,31 @@
 package com.murbanowicz.usoslite.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "student")
-public class User {
+public class User implements UserDetails {
     @Id
     @Column(name = "id_student")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idStudent;
+    private Long id;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
 
     @Column(name = "first_name")
     private String firstName;
@@ -21,12 +36,13 @@ public class User {
     @Column(name = "student_number")
     private String studentNumber;
 
+    @Column(name = "user_role")
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "field_of_study_id", referencedColumnName = "id")
     private Field field;
-
-    public User() {
-    }
 
     public User(String firstName, String lastName, String studentNumber) {
         this.firstName = firstName;
@@ -34,54 +50,46 @@ public class User {
         this.studentNumber = studentNumber;
     }
 
-    public User(Long idStudent, String firstName, String lastName, String studentNumber) {
-        this.idStudent = idStudent;
+    public User(Long id, String firstName, String lastName, String studentNumber) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentNumber = studentNumber;
     }
 
-    public User(String firstName, String lastName, String studentNumber, Field field) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.studentNumber = studentNumber;
-        this.field = field;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(userRole.name()));
     }
 
-    public Long getIdStudent() {
-        return idStudent;
+    @Override
+    public String getPassword() {
+        return password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    @Override
+    public String getUsername() {
+        return email;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getLastName() {
-        return lastName;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public String getStudentNumber() {
-        return studentNumber;
-    }
-
-    public void setStudentNumber(String studentNumber) {
-        this.studentNumber = studentNumber;
-    }
-
-    public Field getField() {
-        return field;
-    }
-
-    public void setField(Field field) {
-        this.field = field;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     @Override
