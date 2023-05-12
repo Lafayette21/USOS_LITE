@@ -11,8 +11,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/student")
 public class StudentController {
-    private StudentService studentService;
+    private final StudentService studentService;
 
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @GetMapping("/get-all")
     public ResponseEntity<List<Student>> getAllStudents() {
@@ -37,5 +40,10 @@ public class StudentController {
     @PutMapping("/update-by-id/{id}")
     public ResponseEntity<Student> updateStudentById(@PathVariable Long id, @RequestBody Student updatedStudent) {
         return ResponseEntity.ok(studentService.updateStudentById(id,updatedStudent));
+    }
+
+    @PutMapping("/{studentId}/set-field/{fieldId}")
+    public ResponseEntity<Student> updateStudentsFieldById(@PathVariable Long studentId, @PathVariable Long fieldId){
+        return ResponseEntity.ok(studentService.updateStudentsFieldById(studentId, fieldId));
     }
 }
