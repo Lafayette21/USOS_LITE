@@ -1,7 +1,6 @@
 package com.murbanowicz.usoslite.service;
 
 import com.murbanowicz.usoslite.model.Field;
-import com.murbanowicz.usoslite.model.Student;
 import com.murbanowicz.usoslite.repository.FieldRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +35,7 @@ class FieldServiceTest {
     }
 
     @Test
-    void shouldGetStudentById() {
+    void shouldGetFieldById() {
         //given
         long fieldId = 1L;
         Field expectedField = new Field("Informatyka");
@@ -61,7 +60,7 @@ class FieldServiceTest {
     }
 
     @Test
-    void shouldDeleteStudentById() {
+    void shouldDeleteFieldById() {
         //given
         long fieldId = 1L;
         Field expectedField = new Field("Informatyka");
@@ -73,7 +72,7 @@ class FieldServiceTest {
     }
 
     @Test
-    void shouldUpdateStudentById() {
+    void shouldUpdateFieldById() {
         //given
         long fieldId = 1L;
         Field fieldToUpdate = new Field("Informatyka");

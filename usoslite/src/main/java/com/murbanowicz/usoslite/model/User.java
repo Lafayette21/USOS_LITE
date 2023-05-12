@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "student")
-public class Student {
+public class User {
     @Id
     @Column(name = "id_student")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,23 +25,23 @@ public class Student {
     @JoinColumn(name = "field_of_study_id", referencedColumnName = "id")
     private Field field;
 
-    public Student() {
+    public User() {
     }
 
-    public Student(String firstName, String lastName, String studentNumber) {
+    public User(String firstName, String lastName, String studentNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentNumber = studentNumber;
     }
 
-    public Student(Long idStudent, String firstName, String lastName, String studentNumber) {
+    public User(Long idStudent, String firstName, String lastName, String studentNumber) {
         this.idStudent = idStudent;
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentNumber = studentNumber;
     }
 
-    public Student(String firstName, String lastName, String studentNumber, Field field) {
+    public User(String firstName, String lastName, String studentNumber, Field field) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentNumber = studentNumber;
@@ -87,10 +87,10 @@ public class Student {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Student student)) return false;
-        return firstName.equals(student.firstName) &&
-                lastName.equals(student.lastName) &&
-                studentNumber.equals(student.studentNumber);
+        if (!(o instanceof User user)) return false;
+        return firstName.equals(user.firstName) &&
+                lastName.equals(user.lastName) &&
+                studentNumber.equals(user.studentNumber);
     }
 
     @Override
