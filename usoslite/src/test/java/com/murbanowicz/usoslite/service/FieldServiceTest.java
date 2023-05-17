@@ -61,7 +61,7 @@ class FieldServiceTest {
     }
 
     @Test
-    void shouldDeleteStudentById() {
+    void shouldDeleteFieldById() {
         //given
         long fieldId = 1L;
         Field expectedField = new Field("Informatyka");
@@ -73,7 +73,7 @@ class FieldServiceTest {
     }
 
     @Test
-    void shouldUpdateStudentById() {
+    void shouldUpdateFieldById() {
         //given
         long fieldId = 1L;
         Field fieldToUpdate = new Field("Informatyka");

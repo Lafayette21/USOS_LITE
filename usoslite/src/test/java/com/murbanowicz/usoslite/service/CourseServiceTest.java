@@ -38,7 +38,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    void shouldGetStudentById() {
+    void shouldGetCourseById() {
         //given
         long courseId = 1L;
         Course expectedCourse = new Course("Matematyka", 7);
@@ -49,7 +49,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    void shouldAddNewField() {
+    void shouldAddNewCourse() {
         // given
         Course expectedCourse = new Course("Matematyka", 7);
         // when
@@ -63,7 +63,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    void shouldDeleteStudentById() {
+    void shouldDeleteCourseById() {
         //given
         long courseId = 1L;
         Course expectedCourse = new Course("Matematyka", 7);
@@ -75,7 +75,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    void shouldUpdateStudentById() {
+    void shouldUpdateCourseById() {
         //given
         long courseId = 1L;
         Course courseToUpdate = new Course("Matematyka", 7);

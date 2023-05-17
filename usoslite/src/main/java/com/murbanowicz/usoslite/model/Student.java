@@ -1,51 +1,42 @@
 package com.murbanowicz.usoslite.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
 @Entity
-@Table(name = "student")
-@Data
 @NoArgsConstructor
-public class Student {
-    @Id
-    @Column(name = "id_student")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idStudent;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "student_number")
+public class Student extends User {
     private String studentNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "field_of_study_id", referencedColumnName = "id")
     private Field field;
 
-    public Student(String firstName, String lastName, String studentNumber) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Student(String email, String password, String firstName, String lastName, UserRole userRole, String studentNumber) {
+        super(email, password, firstName, lastName, userRole);
         this.studentNumber = studentNumber;
     }
 
-    public Student(Long idStudent, String firstName, String lastName, String studentNumber) {
-        this.idStudent = idStudent;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Student(Long id, String email, String password, String firstName, String lastName, UserRole userRole, String studentNumber) {
+        super(id, email, password, firstName, lastName, userRole);
         this.studentNumber = studentNumber;
     }
 
-    public Student(String firstName, String lastName, String studentNumber, Field field) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public String getStudentNumber() {
+        return studentNumber;
+    }
+
+    public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
+    }
+
+    public Field getField() {
+        return field;
+    }
+
+    public void setField(Field field) {
         this.field = field;
     }
 
