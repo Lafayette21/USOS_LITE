@@ -2,6 +2,7 @@ package com.murbanowicz.usoslite.controller;
 
 import com.murbanowicz.usoslite.model.Student;
 import com.murbanowicz.usoslite.service.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,12 +11,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/student")
+@RequiredArgsConstructor
 public class StudentController {
     private final StudentService studentService;
-
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
 
     @GetMapping("/get-all")
     public ResponseEntity<List<Student>> getAllStudents() {

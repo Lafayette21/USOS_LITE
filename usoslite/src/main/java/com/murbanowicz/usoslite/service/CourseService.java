@@ -4,20 +4,17 @@ import com.murbanowicz.usoslite.exception.CourseNotFoundException;
 import com.murbanowicz.usoslite.model.Course;
 import com.murbanowicz.usoslite.model.Field;
 import com.murbanowicz.usoslite.repository.CourseRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CourseService {
     private final CourseRepository courseRepository;
     private final FieldService fieldService;
-
-    public CourseService(CourseRepository courseRepository, FieldService fieldService) {
-        this.courseRepository = courseRepository;
-        this.fieldService = fieldService;
-    }
 
     public List<Course> getAllCourses() {
         return courseRepository.findAll();

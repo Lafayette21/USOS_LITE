@@ -2,6 +2,7 @@ package com.murbanowicz.usoslite.controller;
 
 import com.murbanowicz.usoslite.model.Course;
 import com.murbanowicz.usoslite.service.CourseService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,12 +11,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/app/v1/course")
+@RequiredArgsConstructor
 public class CourseController {
     private final CourseService courseService;
-
-    public CourseController(CourseService courseService) {
-        this.courseService = courseService;
-    }
 
     @GetMapping("/get-all")
     public ResponseEntity<List<Course>> getAllCourses() {
