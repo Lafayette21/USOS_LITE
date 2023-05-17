@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "`user`")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -13,6 +15,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     protected Long id;
+    @Column(unique = true)
     protected String email;
     protected String password;
     protected String firstName;
@@ -74,5 +77,19 @@ public class User {
 
     public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return email.equals(user.email) && password.equals(user.password) && firstName.equals(user.firstName)
+                && lastName.equals(user.lastName) && userRole == user.userRole;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, password, firstName, lastName, userRole);
     }
 }
