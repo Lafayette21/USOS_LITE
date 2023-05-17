@@ -1,11 +1,15 @@
 package com.murbanowicz.usoslite.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
 @Entity
 @Table(name = "student")
+@Data
+@NoArgsConstructor
 public class Student {
     @Id
     @Column(name = "id_student")
@@ -25,9 +29,6 @@ public class Student {
     @JoinColumn(name = "field_of_study_id", referencedColumnName = "id")
     private Field field;
 
-    public Student() {
-    }
-
     public Student(String firstName, String lastName, String studentNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,42 +46,6 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentNumber = studentNumber;
-        this.field = field;
-    }
-
-    public Long getIdStudent() {
-        return idStudent;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getStudentNumber() {
-        return studentNumber;
-    }
-
-    public void setStudentNumber(String studentNumber) {
-        this.studentNumber = studentNumber;
-    }
-
-    public Field getField() {
-        return field;
-    }
-
-    public void setField(Field field) {
         this.field = field;
     }
 

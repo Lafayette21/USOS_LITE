@@ -4,20 +4,17 @@ import com.murbanowicz.usoslite.exception.StudentNotFoundException;
 import com.murbanowicz.usoslite.model.Field;
 import com.murbanowicz.usoslite.model.Student;
 import com.murbanowicz.usoslite.repository.StudentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class StudentService {
     private final StudentRepository studentRepository;
     private final FieldService fieldService;
-
-    public StudentService(StudentRepository studentRepository, FieldService fieldService) {
-        this.studentRepository = studentRepository;
-        this.fieldService = fieldService;
-    }
 
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
