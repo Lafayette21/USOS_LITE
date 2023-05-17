@@ -1,7 +1,6 @@
 package com.murbanowicz.usoslite.service;
 
 import com.murbanowicz.usoslite.model.Course;
-import com.murbanowicz.usoslite.model.Field;
 import com.murbanowicz.usoslite.repository.CourseRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

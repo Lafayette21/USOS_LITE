@@ -1,9 +1,6 @@
 package com.murbanowicz.usoslite.service;
 
-import com.murbanowicz.usoslite.exception.StudentNotFoundException;
 import com.murbanowicz.usoslite.exception.UserNotFoundException;
-import com.murbanowicz.usoslite.model.Field;
-import com.murbanowicz.usoslite.model.Student;
 import com.murbanowicz.usoslite.model.User;
 import com.murbanowicz.usoslite.repository.UserRepository;
 import lombok.AllArgsConstructor;
