@@ -3,6 +3,7 @@ package com.murbanowicz.usoslite.service;
 import com.murbanowicz.usoslite.exception.UserNotFoundException;
 import com.murbanowicz.usoslite.model.Field;
 import com.murbanowicz.usoslite.model.User;
+import com.murbanowicz.usoslite.model.UserRole;
 import com.murbanowicz.usoslite.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,8 @@ class UserServiceTest {
     void shouldGetUserById() {
         //given
         long idUser = 1L;
-        User expectedUser = new User(idUser, "Adam", "Abacki", "123456");
+        User expectedUser = new User(idUser, "adam@mail.com" , "pass" ,"Adam", "Abacki",
+                "123456", UserRole.STUDENT);
         //when
         when(userRepositoryMock.findById(idUser)).thenReturn(Optional.of(expectedUser));
         //then
@@ -61,7 +63,9 @@ class UserServiceTest {
     @Test
     void shouldAddNewUser() {
         // given
-        User expectedUser = new User("Adam", "Abacki", "123456");
+        User expectedUser = new User("adam@mail.com" , "pass" ,"Adam", "Abacki",
+                "123456", UserRole.STUDENT);
+        ;
         // when
         userService.createUser(expectedUser);
         // then
@@ -76,7 +80,8 @@ class UserServiceTest {
     void shouldDeleteUserById() {
         //given
         long idUser = 1L;
-        User expectedUser = new User(idUser, "Adam", "Abacki", "123456");
+        User expectedUser = new User(idUser, "adam@mail.com" , "pass" ,"Adam", "Abacki",
+                "123456", UserRole.STUDENT);
         //when
         when(userRepositoryMock.findById(idUser)).thenReturn(Optional.of(expectedUser));
         userService.deleteUserById(idUser);
@@ -88,10 +93,12 @@ class UserServiceTest {
     void shouldUpdateUserById() {
         //given
         long idUser = 1L;
-        User userToUpdate = new User("Adam", "Abacki", "123456");
+        User userToUpdate = new User(idUser, "adam@mail.com" , "pass" ,"Adam", "Abacki",
+                "123456", UserRole.STUDENT);
+        ;
         //when
         when(userRepositoryMock.findById(idUser)).thenReturn(Optional.of(userToUpdate));
-        User expectedUpdatedUser = new User("Bartosz", "Babacki", "654321");
+        User expectedUpdatedUser = new User("bartosz@mail.com", "pass" ,"Bartosz", "Babacki", "654321", UserRole.STUDENT);
         User actualUpdatedUser = userService.updateUserById(idUser, expectedUpdatedUser);
         //Then
         assertThat(actualUpdatedUser).isEqualTo(expectedUpdatedUser);
@@ -102,7 +109,9 @@ class UserServiceTest {
         // given
         Long UserId = 1L;
         Long fieldId = 1L;
-        User user = new User("Adam", "Abacki", "123456");
+        User user = new User("adam@mail.com" , "pass" ,"Adam", "Abacki",
+                "123456", UserRole.STUDENT);
+        ;
         Field field = new Field("Informatyka");
         // when
         when(userRepositoryMock.findById(UserId)).thenReturn(Optional.of(user));
