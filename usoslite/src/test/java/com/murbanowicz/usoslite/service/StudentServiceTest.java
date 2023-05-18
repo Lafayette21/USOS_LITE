@@ -3,7 +3,6 @@ package com.murbanowicz.usoslite.service;
 import com.murbanowicz.usoslite.exception.StudentNotFoundException;
 import com.murbanowicz.usoslite.model.Field;
 import com.murbanowicz.usoslite.model.Student;
-import com.murbanowicz.usoslite.model.UserRole;
 import com.murbanowicz.usoslite.repository.StudentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,7 +44,7 @@ class StudentServiceTest {
         //given
         long idStudent = 1L;
         Student expectedStudent = new Student(idStudent, "adam@student.pl", "password", "Adam",
-                "Abacki", UserRole.STUDENT, "123456");
+                "Abacki", "123456");
         //when
         when(studentRepositoryMock.findById(idStudent)).thenReturn(Optional.of(expectedStudent));
         //then
@@ -64,7 +63,7 @@ class StudentServiceTest {
     void shouldAddNewStudent() {
         // given
         Student expectedStudent = new Student("adam@student.pl", "password", "Adam",
-                "Abacki", UserRole.STUDENT, "123456");
+                "Abacki", "123456");
         // when
         studentService.createStudent(expectedStudent);
         // then
@@ -80,7 +79,7 @@ class StudentServiceTest {
         //given
         long idStudent = 1L;
         Student expectedStudent = new Student(idStudent, "adam@student.pl", "password", "Adam",
-                "Abacki", UserRole.STUDENT, "123456");
+                "Abacki", "123456");
         //when
         when(studentRepositoryMock.findById(idStudent)).thenReturn(Optional.of(expectedStudent));
         studentService.deleteStudentById(idStudent);
@@ -93,11 +92,11 @@ class StudentServiceTest {
         //given
         long idStudent = 1L;
         Student studentToUpdate = new Student("adam@student.pl", "password", "Adam",
-                "Abacki", UserRole.STUDENT, "123456");
+                "Abacki", "123456");
         //when
         when(studentRepositoryMock.findById(idStudent)).thenReturn(Optional.of(studentToUpdate));
         Student expectedUpdatedStudent = new Student("bartosz@student.pl", "pass", "Bartosz",
-                "Babacki", UserRole.STUDENT, "654321");
+                "Babacki", "654321");
         Student actualUpdatedStudent = studentService.updateStudentById(idStudent, expectedUpdatedStudent);
         //Then
         assertThat(actualUpdatedStudent).isEqualTo(expectedUpdatedStudent);
@@ -109,7 +108,7 @@ class StudentServiceTest {
         Long studentId = 1L;
         Long fieldId = 1L;
         Student student = new Student("adam@student.pl", "password", "Adam",
-                "Abacki", UserRole.STUDENT, "123456");
+                "Abacki", "123456");
         Field field = new Field("Informatyka");
         // when
         when(studentRepositoryMock.findById(studentId)).thenReturn(Optional.of(student));
