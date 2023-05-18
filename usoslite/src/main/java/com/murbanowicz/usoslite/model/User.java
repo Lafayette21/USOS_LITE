@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 import java.util.Objects;
 
 @Entity
-@Table(name = "`user`")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "app_user")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -22,6 +23,21 @@ public class User {
     protected String lastName;
     @Enumerated(EnumType.STRING)
     protected UserRole userRole;
+
+    public User(String email, String password, String firstName, String lastName) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public User(Long id, String email, String password, String firstName, String lastName) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public User(String email, String password, String firstName, String lastName, UserRole userRole) {
         this.email = email;
