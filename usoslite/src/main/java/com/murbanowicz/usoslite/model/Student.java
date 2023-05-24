@@ -27,6 +27,13 @@ public class Student extends User {
         this.userRole = UserRole.STUDENT;
     }
 
+    public Student(String email, String password, String firstName, String lastName, String studentNumber, Field field) {
+        super(email, password, firstName, lastName);
+        this.studentNumber = studentNumber;
+        this.field = field;
+        this.userRole = UserRole.STUDENT;
+    }
+
     public String getStudentNumber() {
         return studentNumber;
     }

@@ -26,6 +26,11 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getStudentById(id));
     }
 
+    @GetMapping("/get-students-by-field/{fieldId}")
+    public ResponseEntity<List<Student>> getStudentsByField(@PathVariable Long fieldId){
+        return ResponseEntity.ok(studentService.getStudentsByField(fieldId));
+    }
+
     @PostMapping("/create")
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
         return new ResponseEntity<>(studentService.createStudent(student), HttpStatus.CREATED);
