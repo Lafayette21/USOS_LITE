@@ -1,5 +1,6 @@
 package com.murbanowicz.usoslite.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Field {
     private String name;
 
     @OneToMany(mappedBy = "field", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Course> courses;
 
     public Field(String name) {
@@ -47,5 +49,12 @@ public class Field {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "Field{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

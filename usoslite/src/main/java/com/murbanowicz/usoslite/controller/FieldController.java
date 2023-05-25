@@ -26,6 +26,11 @@ public class FieldController {
         return ResponseEntity.ok(service.getFieldById(id));
     }
 
+    @GetMapping("/get-all/except/{fieldId}")
+    public ResponseEntity<List<Field>> getAllFieldsExceptFor(@PathVariable Long fieldId){
+        return ResponseEntity.ok(service.getAllFieldsExceptFor(fieldId));
+    }
+
     @PostMapping("/create")
     public ResponseEntity<Field> createNewField(@RequestBody Field field) {
         return new ResponseEntity<>(service.createNewField(field), HttpStatus.CREATED);
