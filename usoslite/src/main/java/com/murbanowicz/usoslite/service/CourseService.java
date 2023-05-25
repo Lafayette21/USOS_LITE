@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -49,5 +50,12 @@ public class CourseService {
         Field field = fieldService.getFieldById(fieldId);
         course.setField(field);
         return course;
+    }
+
+    public List<Course> getCoursesByField(Long fieldId) {
+        Field field = fieldService.getFieldById(fieldId);
+        return getAllCourses().stream()
+                .filter(course -> course.getField().equals(field))
+                .collect(Collectors.toList());
     }
 }

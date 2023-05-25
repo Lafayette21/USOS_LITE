@@ -20,7 +20,7 @@ public class Field {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "field")
+    @OneToMany(mappedBy = "field", cascade = CascadeType.ALL)
     private List<Course> courses;
 
     public Field(String name) {

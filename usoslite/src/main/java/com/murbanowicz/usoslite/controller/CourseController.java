@@ -26,6 +26,11 @@ public class CourseController {
         return ResponseEntity.ok(courseService.getCourseById(id));
     }
 
+    @GetMapping("/get-by-field/{fieldId}")
+    public ResponseEntity<List<Course>> getCoursesByField(@PathVariable Long fieldId){
+        return ResponseEntity.ok(courseService.getCoursesByField(fieldId));
+    }
+
     @PostMapping("/create")
     public ResponseEntity<Course> createCourse(@RequestBody Course course) {
         return new ResponseEntity<>(courseService.createCourse(course), HttpStatus.CREATED);
