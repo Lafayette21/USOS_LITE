@@ -60,4 +60,11 @@ public class StudentService {
                 .filter(student -> student.getField().equals(field))
                 .collect(Collectors.toList());
     }
+
+    public Student createStudentWithExistingField(Student student, Long fieldId) {
+        Field existingField = fieldService.getFieldById(fieldId);
+        student.setField(existingField);
+        studentRepository.save(student);
+        return student;
+    }
 }

@@ -75,6 +75,25 @@ class StudentServiceTest {
     }
 
     @Test
+    void shouldAddNewStudentWithExistingField() {
+        // given
+        Long fieldId = 1L;
+        Field field = new Field("Computer Science");
+        Student expectedStudent = new Student("adam@student.pl", "password", "Adam",
+                "Abacki", "123456");
+        // when
+        when(fieldServiceMock.getFieldById(fieldId)).thenReturn(field);
+        studentService.createStudentWithExistingField(expectedStudent, fieldId);
+        // then
+        ArgumentCaptor<Student> studentArgumentCaptor = ArgumentCaptor.forClass(Student.class);
+        verify(studentRepositoryMock).save(studentArgumentCaptor.capture());
+
+        Student actualStudent = studentArgumentCaptor.getValue();
+        assertThat(actualStudent).isEqualTo(expectedStudent);
+        assertThat(actualStudent.getField()).isEqualTo(field);
+    }
+
+    @Test
     void shouldDeleteStudentById() {
         //given
         long idStudent = 1L;

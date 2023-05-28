@@ -36,6 +36,11 @@ public class StudentController {
         return new ResponseEntity<>(studentService.createStudent(student), HttpStatus.CREATED);
     }
 
+    @PostMapping("/create/with-field-id/{fieldId}")
+    public ResponseEntity<Student> createStudentWithExistingField(@RequestBody Student student, @PathVariable Long fieldId){
+        return ResponseEntity.ok(studentService.createStudentWithExistingField(student, fieldId));
+    }
+
     @DeleteMapping("/delete-by-id/{id}")
     public ResponseEntity<Student> deleteStudentById(@PathVariable Long id) {
         return ResponseEntity.ok(studentService.deleteStudentById(id));

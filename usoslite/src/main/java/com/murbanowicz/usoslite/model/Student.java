@@ -9,10 +9,11 @@ import java.util.Objects;
 @DiscriminatorValue("STUDENT")
 @NoArgsConstructor
 public class Student extends User {
+    @Column(unique = true)
     private String studentNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "field_of_study_id", referencedColumnName = "id")
+    @JoinColumn(name = "field_of_study_id", referencedColumnName = "Id")
     private Field field;
 
     public Student(String email, String password, String firstName, String lastName, String studentNumber) {
