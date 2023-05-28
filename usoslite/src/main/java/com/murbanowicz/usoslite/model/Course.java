@@ -50,4 +50,12 @@ public class Course {
     public int hashCode() {
         return Objects.hash(courseName, ectsPoints);
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseName='" + courseName + '\'' +
+                ", ectsPoints=" + ectsPoints +
+                '}';
+    }
 }
