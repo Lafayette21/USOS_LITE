@@ -58,4 +58,10 @@ public class CourseService {
                 .filter(course -> course.getField().equals(field))
                 .collect(Collectors.toList());
     }
+
+    public Course createCourseWithField(Course course, Long fieldId) {
+        Field field = fieldService.getFieldById(fieldId);
+        course.setField(field);
+        return courseRepository.save(course);
+    }
 }

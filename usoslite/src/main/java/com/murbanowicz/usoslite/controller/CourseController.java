@@ -36,6 +36,11 @@ public class CourseController {
         return new ResponseEntity<>(courseService.createCourse(course), HttpStatus.CREATED);
     }
 
+    @PostMapping("/create/assign-to-field/{fieldId}")
+    public ResponseEntity<Course> createCourseWithField(@RequestBody Course course, @PathVariable Long fieldId){
+        return ResponseEntity.ok(courseService.createCourseWithField(course, fieldId));
+    }
+
     @DeleteMapping("/delete-by-id/{id}")
     public ResponseEntity<Course> deleteCourseById(@PathVariable Long id) {
         return ResponseEntity.ok(courseService.deleteCourseById(id));

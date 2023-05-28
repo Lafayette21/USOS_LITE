@@ -105,7 +105,7 @@ public class CourseServiceTest {
     }
 
     @Test
-    void shouldAssignCourseToField(){
+    void shouldAssignCourseToField() {
         // given
         Long fieldId = 1L;
         Field field = new Field("Computer Science");
@@ -117,5 +117,23 @@ public class CourseServiceTest {
         Course course = courseService.assignCourseToField(courseId, fieldId);
         //then
         assertThat(course.getField()).isEqualTo(field);
+    }
+
+    @Test
+    void shouldCreateCourseWithField() {
+        //given
+        Long fieldId = 1L;
+        Field field = new Field("Computer Science");
+        Course maths = new Course("Maths", 7, field);
+        //when
+        when(fieldServiceMock.getFieldById(fieldId)).thenReturn(field);
+        Course course = courseService.createCourseWithField(maths, fieldId);
+        // then
+        ArgumentCaptor<Course> courseArgumentCaptor = ArgumentCaptor.forClass(Course.class);
+        verify(courseRepositoryMock).save(courseArgumentCaptor.capture());
+
+        Course actualCourse = courseArgumentCaptor.getValue();
+        assertThat(actualCourse).isEqualTo(maths);
+        assertThat(actualCourse.getField()).isEqualTo(field);
     }
 }
