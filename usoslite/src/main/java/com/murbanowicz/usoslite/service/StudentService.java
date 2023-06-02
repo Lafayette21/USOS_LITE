@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +32,7 @@ public class StudentService {
 
     public Student deleteStudentById(Long id) {
         Student studentToDelete = getStudentById(id);
+        studentToDelete.setField(null);
         studentRepository.delete(studentToDelete);
         return studentToDelete;
     }
@@ -50,5 +52,19 @@ public class StudentService {
         Student studentToUpdate = getStudentById(studentId);
         studentToUpdate.setField(field);
         return studentToUpdate;
+    }
+
+    public List<Student> getStudentsByField(Long fieldId) {
+        Field field = fieldService.getFieldById(fieldId);
+        return getAllStudents().stream()
+                .filter(student -> student.getField().equals(field))
+                .collect(Collectors.toList());
+    }
+
+    public Student createStudentWithExistingField(Student student, Long fieldId) {
+        Field existingField = fieldService.getFieldById(fieldId);
+        student.setField(existingField);
+        studentRepository.save(student);
+        return student;
     }
 }

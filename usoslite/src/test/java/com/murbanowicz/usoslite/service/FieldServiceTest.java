@@ -9,6 +9,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -82,5 +83,20 @@ class FieldServiceTest {
         Field actualUpdatedField = fieldService.updateFieldById(fieldId, expectedUpdatedField);
         //Then
         assertThat(actualUpdatedField).isEqualTo(expectedUpdatedField);
+    }
+
+    @Test
+    void shouldGetAllFieldExceptForOne() {
+        //given
+        long fieldId = 1L;
+        Field computerScience = new Field("Computer Science");
+        Field mathematics = new Field("Mathematics");
+        Field geology = new Field("Geology");
+        //when
+        when(fieldRepositoryMock.findAll()).thenReturn(List.of(mathematics, computerScience, geology));
+        when(fieldRepositoryMock.findById(fieldId)).thenReturn(Optional.of(computerScience));
+        List<Field> actualFields = fieldService.getAllFieldsExceptFor(fieldId);
+        //then
+        assertThat(actualFields).isEqualTo(List.of(mathematics, geology));
     }
 }

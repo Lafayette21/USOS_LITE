@@ -6,22 +6,33 @@ import lombok.NoArgsConstructor;
 import java.util.Objects;
 
 @Entity
+@DiscriminatorValue("STUDENT")
 @NoArgsConstructor
 public class Student extends User {
+    @Column(unique = true)
     private String studentNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "field_of_study_id", referencedColumnName = "id")
+    @JoinColumn(name = "field_of_study_id", referencedColumnName = "Id")
     private Field field;
 
-    public Student(String email, String password, String firstName, String lastName, UserRole userRole, String studentNumber) {
-        super(email, password, firstName, lastName, userRole);
+    public Student(String email, String password, String firstName, String lastName, String studentNumber) {
+        super(email, password, firstName, lastName);
         this.studentNumber = studentNumber;
+        this.userRole = UserRole.STUDENT;
     }
 
-    public Student(Long id, String email, String password, String firstName, String lastName, UserRole userRole, String studentNumber) {
-        super(id, email, password, firstName, lastName, userRole);
+    public Student(Long id, String email, String password, String firstName, String lastName, String studentNumber) {
+        super(id, email, password, firstName, lastName);
         this.studentNumber = studentNumber;
+        this.userRole = UserRole.STUDENT;
+    }
+
+    public Student(String email, String password, String firstName, String lastName, String studentNumber, Field field) {
+        super(email, password, firstName, lastName);
+        this.studentNumber = studentNumber;
+        this.field = field;
+        this.userRole = UserRole.STUDENT;
     }
 
     public String getStudentNumber() {

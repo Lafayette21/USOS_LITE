@@ -1,5 +1,6 @@
 package com.murbanowicz.usoslite.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,11 +25,18 @@ public class Course {
 
     @ManyToOne
     @JoinColumn(name = "field_id")
+    @JsonIgnore
     private Field field;
 
     public Course(String courseName, int ectsPoints) {
         this.courseName = courseName;
         this.ectsPoints = ectsPoints;
+    }
+
+    public Course(String courseName, int ectsPoints, Field field) {
+        this.courseName = courseName;
+        this.ectsPoints = ectsPoints;
+        this.field = field;
     }
 
     @Override
@@ -41,5 +49,13 @@ public class Course {
     @Override
     public int hashCode() {
         return Objects.hash(courseName, ectsPoints);
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseName='" + courseName + '\'' +
+                ", ectsPoints=" + ectsPoints +
+                '}';
     }
 }

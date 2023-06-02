@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +21,7 @@ public class FieldService {
 
     public Field getFieldById(Long id) {
         return repository.findById(id)
-                .orElseThrow(()->new FieldNotFoundException(id));
+                .orElseThrow(() -> new FieldNotFoundException(id));
     }
 
     public Field createNewField(Field field) {
@@ -38,5 +39,12 @@ public class FieldService {
         Field fieldToUpdate = getFieldById(fieldId);
         fieldToUpdate.setName(updatedField.getName());
         return fieldToUpdate;
+    }
+
+    public List<Field> getAllFieldsExceptFor(Long fieldId) {
+        Field fieldToExclude = getFieldById(fieldId);
+        return getAllFields().stream()
+                .filter(field -> !field.equals(fieldToExclude))
+                .collect(Collectors.toList());
     }
 }
