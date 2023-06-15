@@ -1,0 +1,10 @@
+#student-transfer {
+    width: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    align-items: center;
+    display: inline-block;
+    border: 1px #778899 solid;
+    padding-left: 30px;
+    padding-bottom: 20px;
+}

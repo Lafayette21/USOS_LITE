@@ -1,0 +1,14 @@
+#person-icon {
+    width: 100px;
+    height: auto;
+}
+
+#admin-details {
+    width: 20%;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    justify-content: center;
+    border: crimson 3px solid;
+}

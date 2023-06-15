@@ -1,0 +1,7 @@
+<div id="student-transfer">
+    <h4>Choose new field</h4>
+    <select [(ngModel)]="selectedField">
+        <option *ngFor="let field of fields" [ngValue]="field">{{field.name}}</option>
+    </select>
+    <button (click)="transferStudent()">Transfer</button>
+</div>

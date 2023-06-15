@@ -1,0 +1,18 @@
+#student-creation {
+    width: 20%;
+    margin-left: auto;
+    margin-top: 30px;
+    margin-right: auto;
+    font-size: 20px;
+    border: crimson 2px solid;
+    padding: 30px;
+}
+
+.inputField {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+label {
+    padding: 10px;
+}

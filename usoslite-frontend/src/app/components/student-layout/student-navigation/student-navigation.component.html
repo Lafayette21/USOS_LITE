@@ -1,0 +1,8 @@
+<div>
+    <nav>
+        <ul>
+            <li *ngFor="let element of elements" (click)="redirectStudentTo(element)">{{element}}</li>
+            <li (click)="logoutStudent()">Logout</li>
+        </ul>
+    </nav>
+</div>

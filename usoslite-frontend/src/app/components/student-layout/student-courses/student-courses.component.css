@@ -1,0 +1,23 @@
+#courses {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding: 20px;
+    justify-content: center;
+    border: crimson 3px solid;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 20px;
+}
+
+
+th, td {
+    border: 1px solid #778899;
+    padding: 8px;
+    text-align: center;
+
+}

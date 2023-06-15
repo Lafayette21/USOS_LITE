@@ -1,0 +1,22 @@
+<div id="students">
+    <table>
+        <thead>
+        <tr>
+            <th>Student number</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Operations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let student of fieldStudents">
+            <td>{{student.studentNumber}}</td>
+            <td>{{student.firstName}}</td>
+            <td>{{student.lastName}}</td>
+            <td>{{student.email}}</td>
+            <td><button (click)="deleteStudent(student.id)">Delete student</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

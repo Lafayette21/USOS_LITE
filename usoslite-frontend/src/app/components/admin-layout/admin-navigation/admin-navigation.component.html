@@ -1,0 +1,8 @@
+<div>
+    <nav>
+        <ul>
+            <li *ngFor="let routeName of routeNames" (click)="redirectAdminTo(routeName)">{{routeName}}</li>
+            <li (click)="logoutAdmin()">Logout</li>
+        </ul>
+    </nav>
+</div>

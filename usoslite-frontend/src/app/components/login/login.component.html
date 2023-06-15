@@ -1,0 +1,23 @@
+<div id="login">
+    <h2>Login to view your data</h2>
+    <div id="panel">
+        <form #loginForm="ngForm" (ngSubmit)="submitLogin()">
+            <div>
+                <label for="mail">Mail</label><br>
+                <input type="text" id="mail"
+                       [(ngModel)]="authenticationRequest.email"
+                       name="mail"
+                       required>
+            </div>
+            <div>
+                <label for="password">Password</label><br>
+                <input type="password" id="password"
+                       [(ngModel)]="authenticationRequest.password"
+                       name="password"
+                       required>
+            </div>
+            <br>
+            <button [disabled]="!loginForm.form.valid" type="submit">Login</button>
+        </form>
+    </div>
+</div>

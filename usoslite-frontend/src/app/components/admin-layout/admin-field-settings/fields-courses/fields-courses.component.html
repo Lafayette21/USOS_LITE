@@ -1,0 +1,29 @@
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Course ID</th>
+            <th>Course Name</th>
+            <th>ECTS points</th>
+            <th>Operations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let course of fieldCourses; let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{course.courseName}}</td>
+            <td>{{course.ectsPoints}}</td>
+            <td><button (click)="deleteCourse(course.courseId)">Delete course</button></td>
+        </tr>
+        <tr *ngIf="courseFormVisible">
+            <td></td>
+            <td><input type="text" name="courseName" required [(ngModel)]="newCourse.courseName"></td>
+            <td><input type="number" min="1" name="courseName" required [(ngModel)]="newCourse.ectsPoints"></td>
+            <td><button (click)="addNewCourse()">Add new course</button></td>
+        </tr>
+        <tr>
+            <td><button (click)="showCourseForm()">{{courseCreationButtonText}}</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

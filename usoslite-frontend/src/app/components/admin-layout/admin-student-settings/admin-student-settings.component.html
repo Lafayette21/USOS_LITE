@@ -1,0 +1,40 @@
+<div id="student-table">
+    <table>
+        <thead>
+        <tr>
+            <th>Student number</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Field of study</th>
+            <th colspan="2">Operations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let student of students; let i = index">
+            <tr>
+                <td>{{student.studentNumber}}</td>
+                <td>{{student.firstName}}</td>
+                <td>{{student.lastName}}</td>
+                <td>{{student.email}}</td>
+                <td>{{student.field.name}}</td>
+                <td>
+                    <button (click)="deleteStudent(student.id)">Delete student</button>
+                </td>
+                <td>
+                    <button (click)="showStudentTransferField(i)">Transfer student</button>
+                </td>
+            </tr>
+            <div *ngIf="studentTransferVisible[i]">
+                <app-student-transfer [student]="student"></app-student-transfer>
+            </div>
+        </ng-container>
+        <tr>
+            <td>
+                <button (click)="showStudentCreationForm()">{{studentCreationButtonText}}</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<app-student-creation *ngIf="studentCreationVisible"></app-student-creation>

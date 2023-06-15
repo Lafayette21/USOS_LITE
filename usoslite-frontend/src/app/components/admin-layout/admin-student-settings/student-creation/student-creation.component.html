@@ -1,0 +1,19 @@
+<div id="student-creation">
+    <form #createStudentForm="ngForm" (ngSubmit)="submit()">
+        <div class="inputField">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required [(ngModel)]="student.firstName">
+        </div>
+        <div class="inputField">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required [(ngModel)]="student.lastName">
+        </div>
+        <div class="inputField">
+            <label for="field">Field</label>
+            <select [(ngModel)]="chosenField" name="field" id="field">
+                <option *ngFor="let field of fieldsToChooseFrom" [ngValue]="field">{{field.name}}</option>
+            </select>
+        </div>
+        <button [disabled]="!createStudentForm.form.valid" type="submit">Submit</button>
+    </form>
+</div>
