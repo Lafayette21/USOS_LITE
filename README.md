@@ -6,5 +6,14 @@ Frontend part is implementd in Angular with Typescript
 Running application: 
 Aplication uses docker contenerization for building and running. In order to build the app:
 1. Navigate to each server folder
-2. Run in terminal **docker: build -t <your-name> .**
-3. Run in terminal **docker run -p <port>:<port> <your-name>**
+2. Run in terminal **docker: build -t _your-name_ .**
+3. Run in terminal **docker run -p _port_:_port_ _your-name_**
+
+For easier building here are the commands:  
+-Frontend:  
+  >  docker build -t usoslite-frontend .  
+  >  docker run -p 4200:4200 usoslite-frontend  
+  
+-Backend:  
+  >  docker build -t usoslite-backend .  
+  >  docker run -p 8080:8080 usoslite-backend  
